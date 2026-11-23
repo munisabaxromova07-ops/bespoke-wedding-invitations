@@ -62,6 +62,11 @@ export function mapEmbedUrl(w: Wedding = wedding): string {
   return `https://maps.google.com/maps?q=${w.lat},${w.lng}&z=15&output=embed`;
 }
 
+// Yandex expects "longitude,latitude" order, and pm2rdm draws a red pin marker.
+export function yandexMapUrl(w: Wedding = wedding): string {
+  return `https://yandex.com/maps/?ll=${w.lng},${w.lat}&z=17&pt=${w.lng},${w.lat},pm2rdm`;
+}
+
 export type Countdown = {
   days: number;
   hours: number;
