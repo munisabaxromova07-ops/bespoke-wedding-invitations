@@ -1,5 +1,5 @@
 # Roadmap — To'y taklifnoma sayti
-- [ ] Vitraj-gulli uslubda taklifnoma sahifasi (eshik ochilishi, musiqa, ismlar, sana, manzil, xarita)
-- [ ] Mehmonlar javob qoldirish formasi (Lovable Cloud)
-- [ ] Javoblar ro'yxati sahifasi (parol bilan)
-- [ ] Foydalanuvchining haqiqiy ism/sana/manzilini qo'yish (javob kutilmoqda)
+- [x] Vitraj-gulli uslubda taklifnoma sahifasi (eshik ochilishi, musiqa, ismlar, sana, manzil, xarita)
+- [x] Mehmonlar javob qoldirish formasi (Lovable Cloud)
+- [x] Javoblar ro'yxati — hozircha Lovable Cloud jadvalida ko'riladi (parolli sahifa rad etildi)
+- [x] Haqiqiy ism, sana va to'yxona qo'yildi
