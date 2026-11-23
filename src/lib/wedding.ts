@@ -58,11 +58,6 @@ export function mapUrl(w: Wedding = wedding): string {
   return `https://www.google.com/maps?q=${w.lat},${w.lng}`;
 }
 
-export function yandexMapUrl(w: Wedding = wedding): string {
-  // Yandex expects longitude first
-  return `https://yandex.uz/maps/?pt=${w.lng},${w.lat}&z=16&l=map`;
-}
-
 export function mapEmbedUrl(w: Wedding = wedding): string {
   return `https://maps.google.com/maps?q=${w.lat},${w.lng}&z=15&output=embed`;
 }

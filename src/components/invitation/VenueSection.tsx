@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react";
 import palace from "@/assets/palace.webp.asset.json";
 import venueFrame from "@/assets/venue-frame.webp.asset.json";
 import { Button } from "@/components/ui/button";
-import { formatLongDate, mapEmbedUrl, mapUrl, wedding, yandexMapUrl } from "@/lib/wedding";
+import { formatLongDate, mapEmbedUrl, mapUrl, wedding } from "@/lib/wedding";
 
 export function VenueSection() {
   return (
@@ -30,20 +30,12 @@ export function VenueSection() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
-      <div className="reveal mx-auto mt-6 flex max-w-[420px] flex-col gap-3">
-        <Button asChild variant="invite" size="xl">
-          <a href={mapUrl()} target="_blank" rel="noopener noreferrer">
-            <MapPin />
-            Google xaritada ochish
-          </a>
-        </Button>
-        <Button asChild variant="outline" size="xl" className="rounded-full font-sans uppercase tracking-[0.22em]">
-          <a href={yandexMapUrl()} target="_blank" rel="noopener noreferrer">
-            <MapPin />
-            Yandex xaritada ochish
-          </a>
-        </Button>
-      </div>
+      <Button asChild variant="invite" size="xl" className="reveal mt-6">
+        <a href={mapUrl()} target="_blank" rel="noopener noreferrer">
+          <MapPin />
+          Xaritani ochish
+        </a>
+      </Button>
     </section>
   );
 }
