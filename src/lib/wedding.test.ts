@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDotDate, formatLongDate, getCountdown, weddingDate, weekdayName, wedding } from "./wedding";
+import { formatDotDate, formatLongDate, getCountdown, mapUrl, weddingDate, weekdayName, wedding, yandexMapUrl } from "./wedding";
 
 describe("wedding date helpers", () => {
   it("builds the wedding moment in Tashkent time", () => {
@@ -27,5 +27,11 @@ describe("wedding date helpers", () => {
   it("stops at zero once the wedding has started", () => {
     const target = new Date("2026-12-16T13:00:00Z");
     expect(getCountdown(target, new Date("2026-12-16T13:00:01Z")).done).toBe(true);
+  });
+
+  it("points both map links at the venue pin", () => {
+    const w = { ...wedding, lat: 40.270898, lng: 69.019998 };
+    expect(mapUrl(w)).toBe("https://www.google.com/maps?q=40.270898,69.019998");
+    expect(yandexMapUrl(w)).toBe("https://yandex.uz/maps/?pt=69.019998,40.270898&z=16&l=map");
   });
 });

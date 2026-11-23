@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react";
 import palace from "@/assets/palace.webp.asset.json";
 import venueFrame from "@/assets/venue-frame.webp.asset.json";
 import { Button } from "@/components/ui/button";
-import { formatLongDate, mapUrl, wedding } from "@/lib/wedding";
+import { formatLongDate, mapEmbedUrl, mapUrl, wedding, yandexMapUrl } from "@/lib/wedding";
 
 export function VenueSection() {
   return (
@@ -21,12 +21,29 @@ export function VenueSection() {
           <img src={palace.url} alt="To'yxona surati" className="mt-5 w-[85%]" />
         </div>
       </div>
-      <Button asChild variant="invite" size="xl" className="reveal mt-8">
-        <a href={mapUrl()} target="_blank" rel="noreferrer">
-          <MapPin />
-          Xaritani ochish
-        </a>
-      </Button>
+      <div className="reveal mx-auto mt-8 max-w-[420px] overflow-hidden rounded-2xl border border-border bg-paper p-1.5 shadow-soft">
+        <iframe
+          title={`${wedding.venueName} xaritada`}
+          src={mapEmbedUrl()}
+          className="block h-72 w-full rounded-xl border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+      <div className="reveal mx-auto mt-6 flex max-w-[420px] flex-col gap-3">
+        <Button asChild variant="invite" size="xl">
+          <a href={mapUrl()} target="_blank" rel="noopener noreferrer">
+            <MapPin />
+            Google xaritada ochish
+          </a>
+        </Button>
+        <Button asChild variant="outline" size="xl" className="rounded-full font-sans uppercase tracking-[0.22em]">
+          <a href={yandexMapUrl()} target="_blank" rel="noopener noreferrer">
+            <MapPin />
+            Yandex xaritada ochish
+          </a>
+        </Button>
+      </div>
     </section>
   );
 }

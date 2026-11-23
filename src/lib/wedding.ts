@@ -11,8 +11,9 @@ export const wedding = {
   venueName: "Sherbek ota to'yxonasi",
   city: "Sirdaryo viloyati, Boyovut tumani",
   address: "Farhodobod",
-  // Map pin of the venue (latitude, longitude)
-  mapQuery: "40.270898,69.019998",
+  // Map pin of the venue
+  lat: 40.270898,
+  lng: 69.019998,
 };
 
 export type Wedding = typeof wedding;
@@ -54,7 +55,16 @@ export function weekdayName(w: Wedding = wedding): string {
 }
 
 export function mapUrl(w: Wedding = wedding): string {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(w.mapQuery)}`;
+  return `https://www.google.com/maps?q=${w.lat},${w.lng}`;
+}
+
+export function yandexMapUrl(w: Wedding = wedding): string {
+  // Yandex expects longitude first
+  return `https://yandex.uz/maps/?pt=${w.lng},${w.lat}&z=16&l=map`;
+}
+
+export function mapEmbedUrl(w: Wedding = wedding): string {
+  return `https://maps.google.com/maps?q=${w.lat},${w.lng}&z=15&output=embed`;
 }
 
 export type Countdown = {
