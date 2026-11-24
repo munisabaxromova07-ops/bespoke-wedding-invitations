@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Heart } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { submitRsvp } from "@/lib/rsvp.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +10,7 @@ export function RsvpSection() {
   const [attending, setAttending] = useState(true);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState("");
+  const send = useServerFn(submitRsvp);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,10 +24,8 @@ export function RsvpSection() {
     }
     setError("");
     setStatus("sending");
-    const { error: dbError } = await supabase
-      .from("rsvps")
-      .insert({ name, attending, guests, note: note || null });
-    if (dbError) {
+    const result = await send({ data: { name, attending, guests, note: note || null } }).catch(() => null);
+    if (!result?.ok) {
       setStatus("error");
       setError("Yuborib bo'lmadi. Birozdan keyin qayta urinib ko'ring.");
       return;
