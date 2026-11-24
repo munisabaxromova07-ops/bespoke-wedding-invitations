@@ -99,10 +99,10 @@ export function ScratchReveal() {
   );
 
   return (
-    <div>
+    <div className="select-none [-webkit-tap-highlight-color:transparent]" onDragStart={(e) => e.preventDefault()}>
       <div className="relative mx-auto aspect-[2/3] w-full max-w-[340px]">
         <div className="absolute overflow-hidden rounded-[50%] bg-paper" style={INNER}>
-          <img
+          <img draggable={false}
             src={couple.url}
             alt={`${wedding.groom} va ${wedding.bride}`}
             className={`h-full w-full object-cover transition-transform duration-[2500ms] ease-out ${cleared ? "scale-100" : "scale-110"}`}
@@ -115,6 +115,7 @@ export function ScratchReveal() {
           className={`absolute touch-none rounded-[50%] text-foreground transition-opacity duration-[1400ms] ease-out ${cleared ? "pointer-events-none opacity-0" : "opacity-100"}`}
           style={{ left: INNER.left, top: INNER.top, width: "56.5%", height: "64.6%" }}
           onPointerDown={(e) => {
+            e.preventDefault();
             e.currentTarget.setPointerCapture(e.pointerId);
             drawing.current = true;
             last.current = null;
@@ -126,7 +127,7 @@ export function ScratchReveal() {
         />
         <span ref={mistRef} className="hidden bg-paper" />
 
-        <img src={ovalFrame.url} alt="" className="pointer-events-none absolute inset-0 h-full w-full drop-shadow-xl" />
+        <img draggable={false} src={ovalFrame.url} alt="" className="pointer-events-none absolute inset-0 h-full w-full drop-shadow-xl" />
       </div>
 
       <div
