@@ -156,14 +156,61 @@
 }
 
 @keyframes door-left {
-  to {
-    transform: perspective(1400px) rotateY(-100deg);
+  0% {
+    transform: perspective(1800px) rotateY(0deg);
+    filter: brightness(1);
+  }
+  12% {
+    transform: perspective(1800px) rotateY(-4deg);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1800px) rotateY(-108deg);
+    filter: brightness(0.8);
+    opacity: 0;
   }
 }
 
 @keyframes door-right {
+  0% {
+    transform: perspective(1800px) rotateY(0deg);
+    filter: brightness(1);
+  }
+  12% {
+    transform: perspective(1800px) rotateY(4deg);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1800px) rotateY(108deg);
+    filter: brightness(0.8);
+    opacity: 0;
+  }
+}
+
+/* Warm light that spills through the gap as the doors part. */
+@keyframes door-light {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.05);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.6);
+  }
+}
+
+@keyframes medallion-away {
   to {
-    transform: perspective(1400px) rotateY(100deg);
+    opacity: 0;
+    transform: scale(1.35);
+    filter: blur(4px);
   }
 }
 
@@ -193,12 +240,31 @@
 
 @utility animate-door-left {
   transform-origin: left center;
-  animation: door-left 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  will-change: transform, opacity;
+  animation: door-left 2.4s cubic-bezier(0.45, 0.05, 0.15, 1) forwards;
 }
 
 @utility animate-door-right {
   transform-origin: right center;
-  animation: door-right 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  will-change: transform, opacity;
+  animation: door-right 2.4s cubic-bezier(0.45, 0.05, 0.15, 1) forwards;
+}
+
+@utility animate-door-light {
+  animation: door-light 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@utility animate-medallion-away {
+  animation: medallion-away 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@utility door-light {
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklab, var(--paper) 95%, transparent) 0%,
+    color-mix(in oklab, var(--gold) 45%, transparent) 35%,
+    transparent 70%
+  );
 }
 
 @utility animate-glow-pulse {

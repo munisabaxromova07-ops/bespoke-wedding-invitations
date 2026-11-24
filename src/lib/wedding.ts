@@ -14,6 +14,8 @@ export const wedding = {
   // Map pin of the venue
   lat: 40.270898,
   lng: 69.019998,
+  // Contact phone shown in the "questions" block
+  phone: "+998 94 712 83 73",
 };
 
 export type Wedding = typeof wedding;
@@ -58,8 +60,12 @@ export function mapUrl(w: Wedding = wedding): string {
   return `https://www.google.com/maps?q=${w.lat},${w.lng}`;
 }
 
-export function mapEmbedUrl(w: Wedding = wedding): string {
-  return `https://maps.google.com/maps?q=${w.lat},${w.lng}&z=15&output=embed`;
+export function phoneHref(w: Wedding = wedding): string {
+  return `tel:${w.phone.replace(/[^+\d]/g, "")}`;
+}
+
+export function telegramHref(w: Wedding = wedding): string {
+  return `https://t.me/${w.phone.replace(/[^+\d]/g, "")}`;
 }
 
 // Yandex expects "longitude,latitude" order, and pm2rdm draws a red pin marker.

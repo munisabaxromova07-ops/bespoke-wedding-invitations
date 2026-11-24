@@ -1,8 +1,8 @@
-import { MapPin } from "lucide-react";
+import { MapPin, Navigation } from "lucide-react";
 import palace from "@/assets/palace.webp.asset.json";
 import venueFrame from "@/assets/venue-frame.webp.asset.json";
 import { Button } from "@/components/ui/button";
-import { formatLongDate, mapEmbedUrl, mapUrl, wedding } from "@/lib/wedding";
+import { formatLongDate, mapUrl, wedding, yandexMapUrl } from "@/lib/wedding";
 
 export function VenueSection() {
   return (
@@ -21,21 +21,27 @@ export function VenueSection() {
           <img src={palace.url} alt="To'yxona surati" className="mt-5 w-[85%]" />
         </div>
       </div>
-      <div className="reveal mx-auto mt-8 max-w-[420px] overflow-hidden rounded-2xl border border-border bg-paper p-1.5 shadow-soft">
-        <iframe
-          title={`${wedding.venueName} xaritada`}
-          src={mapEmbedUrl()}
-          className="block h-72 w-full rounded-xl border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+
+      <p className="reveal mt-8 font-display text-xl italic text-muted-foreground">Xaritani qayerda ochasiz?</p>
+      <div className="reveal mx-auto mt-4 grid max-w-[420px] grid-cols-2 gap-3">
+        <Button asChild variant="invite" size="xl" className="px-4">
+          <a href={mapUrl()} target="_blank" rel="noopener noreferrer">
+            <MapPin />
+            Google
+          </a>
+        </Button>
+        <Button
+          asChild
+          variant="outline"
+          size="xl"
+          className="rounded-full border-gold bg-paper px-4 font-sans uppercase tracking-[0.22em] text-foreground shadow-soft"
+        >
+          <a href={yandexMapUrl()} target="_blank" rel="noopener noreferrer">
+            <Navigation />
+            Yandex
+          </a>
+        </Button>
       </div>
-      <Button asChild variant="invite" size="xl" className="reveal mt-6">
-        <a href={mapUrl()} target="_blank" rel="noopener noreferrer">
-          <MapPin />
-          Xaritani ochish
-        </a>
-      </Button>
     </section>
   );
 }

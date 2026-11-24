@@ -8,6 +8,7 @@ import { WelcomeSection } from "@/components/invitation/WelcomeSection";
 import { CountdownSection } from "@/components/invitation/CountdownSection";
 import { VenueSection } from "@/components/invitation/VenueSection";
 import { RsvpSection } from "@/components/invitation/RsvpSection";
+import { ContactSection } from "@/components/invitation/ContactSection";
 import { FooterSection } from "@/components/invitation/FooterSection";
 import { useReveal } from "@/hooks/use-reveal";
 import { formatLongDate, wedding } from "@/lib/wedding";
@@ -70,6 +71,7 @@ function Invitation() {
       <CountdownSection />
       <VenueSection />
       <RsvpSection />
+      <ContactSection />
       <FooterSection />
       {doorsGone && <MusicButton playing={playing} onToggle={toggle} />}
     </main>

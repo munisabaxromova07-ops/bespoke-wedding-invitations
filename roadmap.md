@@ -3,3 +3,9 @@
 - [x] Mehmonlar javob qoldirish formasi (Lovable Cloud)
 - [x] Javoblar ro'yxati — hozircha Lovable Cloud jadvalida ko'riladi (parolli sahifa rad etildi)
 - [x] Haqiqiy ism, sana va to'yxona qo'yildi
+- [x] Oval oynaga kuyov-kelin surati (surilganda tuman tarqaydi)
+- [x] Eshiklar ochilishi silliq va chiroyli
+- [x] Xarita: Google Maps va Yandex Maps tugmalari (oyna olib tashlanadi)
+- [x] "Savollaringiz bo'lsa" bog'lanish qismi: +998 94 712 83 73
+- [ ] Yangi javob kelganda Telegramga xabar (bot ulanishi kerak)
+- [ ] GitHub ulash (foydalanuvchi Lovable sozlamalarida o'zi ulaydi)

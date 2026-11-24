@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDotDate, formatLongDate, getCountdown, mapUrl, weddingDate, weekdayName, wedding, yandexMapUrl } from "./wedding";
+import { formatDotDate, formatLongDate, getCountdown, mapUrl, phoneHref, telegramHref, weddingDate, weekdayName, wedding, yandexMapUrl } from "./wedding";
 
 describe("wedding date helpers", () => {
   it("builds the wedding moment in Tashkent time", () => {
@@ -39,5 +39,10 @@ describe("wedding date helpers", () => {
     expect(yandexMapUrl(w)).toBe(
       "https://yandex.com/maps/?ll=69.019998,40.270898&z=17&pt=69.019998,40.270898,pm2rdm",
     );
+  });
+
+  it("calls and messages the contact number +998 94 712 83 73", () => {
+    expect(phoneHref(wedding)).toBe("tel:+998947128373");
+    expect(telegramHref(wedding)).toBe("https://t.me/+998947128373");
   });
 });
