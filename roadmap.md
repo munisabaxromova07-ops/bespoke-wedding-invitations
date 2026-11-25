@@ -6,7 +6,7 @@
 - [x] Oval oynaga kuyov-kelin surati (surilganda tuman tarqaydi)
 - [x] Eshiklar ochilishi silliq va chiroyli
 - [x] Xarita: Google Maps va Yandex Maps tugmalari olib tashlandi
-- [x] "Savollaringiz bo'lsa" bog'lanish qismi: +998 94 712 83 73
+- [x] "Savollaringiz bo'lsa" bog'lanish qismi: +998 99 011 92 97
 - [x] "Necha kishi bo'lasiz?" maydonini olib tashlash
 - [x] Tilaklarni mehmonlarga ochiq sharhlar sifatida ko'rsatish
 - [x] Tilaklarni statik sharhlar o'rniga animatsiya bilan paydo bo'lib yo'q bo'ladigan ko'rinishga o'zgartirish

@@ -15,7 +15,7 @@ export const wedding = {
   lat: 40.270898,
   lng: 69.019998,
   // Contact phone shown in the "questions" block
-  phone: "+998 94 712 83 73",
+  phone: "+998 99 011 92 97",
 };
 
 export type Wedding = typeof wedding;

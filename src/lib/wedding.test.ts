@@ -29,8 +29,8 @@ describe("wedding date helpers", () => {
     expect(getCountdown(target, new Date("2026-12-16T13:00:01Z")).done).toBe(true);
   });
 
-  it("calls and messages the contact number +998 94 712 83 73", () => {
-    expect(phoneHref(wedding)).toBe("tel:+998947128373");
-    expect(telegramHref(wedding)).toBe("https://t.me/+998947128373");
+  it("calls and messages the contact number +998 99 011 92 97", () => {
+    expect(phoneHref(wedding)).toBe("tel:+998990119297");
+    expect(telegramHref(wedding)).toBe("https://t.me/+998990119297");
   });
 });
