@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { Heart } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
+import { useQueryClient } from "@tanstack/react-query";
 import { submitRsvp } from "@/lib/rsvp.functions";
+import { wishesQueryOptions } from "@/lib/wishes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,12 +13,12 @@ export function RsvpSection() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState("");
   const send = useServerFn(submitRsvp);
+  const queryClient = useQueryClient();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const name = String(form.get("name") ?? "").trim();
-    const guests = attending ? Number(form.get("guests") ?? 1) : 0;
     const note = String(form.get("note") ?? "").trim();
     if (name.length < 2) {
       setError("Iltimos, ismingizni yozing");
@@ -24,12 +26,13 @@ export function RsvpSection() {
     }
     setError("");
     setStatus("sending");
-    const result = await send({ data: { name, attending, guests, note: note || null } }).catch(() => null);
+    const result = await send({ data: { name, attending, note: note || null } }).catch(() => null);
     if (!result?.ok) {
       setStatus("error");
       setError("Yuborib bo'lmadi. Birozdan keyin qayta urinib ko'ring.");
       return;
     }
+    await queryClient.invalidateQueries({ queryKey: wishesQueryOptions.queryKey });
     setStatus("done");
   }
 
@@ -78,31 +81,14 @@ export function RsvpSection() {
               ))}
             </div>
 
-            {attending && (
-              <div>
-                <label htmlFor="guests" className="eyebrow text-[0.65rem] text-muted-foreground">
-                  Necha kishi bo'lasiz?
-                </label>
-                <select
-                  id="guests"
-                  name="guests"
-                  defaultValue="1"
-                  className="mt-2 h-12 w-full rounded-md border border-input bg-background px-3 font-sans text-sm"
-                >
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <option key={n} value={n}>
-                      {n} kishi
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
             <div>
               <label htmlFor="note" className="eyebrow text-[0.65rem] text-muted-foreground">
                 Tilaklaringiz (ixtiyoriy)
               </label>
               <Textarea id="note" name="note" maxLength={500} rows={3} placeholder="Yoshlarga tilaklar..." className="mt-2 bg-background" />
+              <p className="mt-2 font-sans text-xs font-light leading-relaxed text-muted-foreground">
+                Tilagingiz ismingiz bilan boshqa mehmonlarga ham ko'rinadi.
+              </p>
             </div>
 
             {error && <p className="text-center font-sans text-sm text-destructive">{error}</p>}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDotDate, formatLongDate, getCountdown, mapUrl, phoneHref, telegramHref, weddingDate, weekdayName, wedding, yandexMapUrl } from "./wedding";
+import { formatDotDate, formatLongDate, getCountdown, phoneHref, telegramHref, weddingDate, weekdayName, wedding } from "./wedding";
 
 describe("wedding date helpers", () => {
   it("builds the wedding moment in Tashkent time", () => {
@@ -27,18 +27,6 @@ describe("wedding date helpers", () => {
   it("stops at zero once the wedding has started", () => {
     const target = new Date("2026-12-16T13:00:00Z");
     expect(getCountdown(target, new Date("2026-12-16T13:00:01Z")).done).toBe(true);
-  });
-
-  it("opens the venue pin in Google Maps", () => {
-    const w = { ...wedding, lat: 40.270898, lng: 69.019998 };
-    expect(mapUrl(w)).toBe("https://www.google.com/maps?q=40.270898,69.019998");
-  });
-
-  it("opens the venue pin in Yandex Maps", () => {
-    const w = { ...wedding, lat: 40.270898, lng: 69.019998 };
-    expect(yandexMapUrl(w)).toBe(
-      "https://yandex.com/maps/?ll=69.019998,40.270898&z=17&pt=69.019998,40.270898,pm2rdm",
-    );
   });
 
   it("calls and messages the contact number +998 94 712 83 73", () => {

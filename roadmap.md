@@ -5,7 +5,9 @@
 - [x] Haqiqiy ism, sana va to'yxona qo'yildi
 - [x] Oval oynaga kuyov-kelin surati (surilganda tuman tarqaydi)
 - [x] Eshiklar ochilishi silliq va chiroyli
-- [x] Xarita: Google Maps va Yandex Maps tugmalari (oyna olib tashlanadi)
+- [x] Xarita: Google Maps va Yandex Maps tugmalari olib tashlandi
 - [x] "Savollaringiz bo'lsa" bog'lanish qismi: +998 94 712 83 73
+- [x] "Necha kishi bo'lasiz?" maydonini olib tashlash
+- [x] Tilaklarni mehmonlarga ochiq sharhlar sifatida ko'rsatish
 - [ ] Yangi javob kelganda Telegramga xabar (bot ulanishi kerak)
 - [ ] GitHub ulash (foydalanuvchi Lovable sozlamalarida o'zi ulaydi)

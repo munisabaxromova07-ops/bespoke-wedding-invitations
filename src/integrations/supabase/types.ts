@@ -43,7 +43,27 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      rsvp_wishes: {
+        Row: {
+          created_at: string | null
+          id: string | null
+          name: string | null
+          note: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string | null
+          name?: string | null
+          note?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string | null
+          name?: string | null
+          note?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

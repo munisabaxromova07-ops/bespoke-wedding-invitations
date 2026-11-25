@@ -7,7 +7,6 @@ import { rsvpMessage } from "./rsvp-message";
 const rsvpSchema = z.object({
   name: z.string().trim().min(2).max(80),
   attending: z.boolean(),
-  guests: z.number().int().min(0).max(5),
   note: z.string().trim().max(500).nullable(),
 });
 
@@ -47,8 +46,8 @@ export const submitRsvp = createServerFn({ method: "POST" })
         },
       },
     });
-    const guests = data.attending ? Math.max(1, data.guests) : 0;
-    const row = { ...data, guests, note: data.note || null };
+    // Guest counts are no longer collected; zero marks them as unspecified.
+    const row = { ...data, guests: 0, note: data.note || null };
     const { error } = await supabase.from("rsvps").insert(row);
     if (error) {
       console.error("RSVP insert failed:", error.message);

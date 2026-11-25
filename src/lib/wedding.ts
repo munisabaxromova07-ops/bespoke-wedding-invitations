@@ -56,21 +56,12 @@ export function weekdayName(w: Wedding = wedding): string {
   return WEEKDAYS[d.getUTCDay()] ?? "";
 }
 
-export function mapUrl(w: Wedding = wedding): string {
-  return `https://www.google.com/maps?q=${w.lat},${w.lng}`;
-}
-
 export function phoneHref(w: Wedding = wedding): string {
   return `tel:${w.phone.replace(/[^+\d]/g, "")}`;
 }
 
 export function telegramHref(w: Wedding = wedding): string {
   return `https://t.me/${w.phone.replace(/[^+\d]/g, "")}`;
-}
-
-// Yandex expects "longitude,latitude" order, and pm2rdm draws a red pin marker.
-export function yandexMapUrl(w: Wedding = wedding): string {
-  return `https://yandex.com/maps/?ll=${w.lng},${w.lat}&z=17&pt=${w.lng},${w.lat},pm2rdm`;
 }
 
 export type Countdown = {
