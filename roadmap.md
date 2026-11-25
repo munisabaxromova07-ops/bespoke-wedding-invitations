@@ -9,5 +9,6 @@
 - [x] "Savollaringiz bo'lsa" bog'lanish qismi: +998 94 712 83 73
 - [x] "Necha kishi bo'lasiz?" maydonini olib tashlash
 - [x] Tilaklarni mehmonlarga ochiq sharhlar sifatida ko'rsatish
+- [x] Tilaklarni statik sharhlar o'rniga animatsiya bilan paydo bo'lib yo'q bo'ladigan ko'rinishga o'zgartirish
 - [ ] Yangi javob kelganda Telegramga xabar (bot ulanishi kerak)
 - [ ] GitHub ulash (foydalanuvchi Lovable sozlamalarida o'zi ulaydi)

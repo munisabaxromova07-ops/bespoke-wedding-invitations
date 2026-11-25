@@ -1,9 +1,29 @@
+import { useEffect, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Heart, MessageCircle } from "lucide-react";
 import { wishesQueryOptions } from "@/lib/wishes";
 
 export function WishesSection() {
   const { data: wishes } = useSuspenseQuery(wishesQueryOptions);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (wishes.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const exitTimer = window.setTimeout(() => setVisible(false), 4200);
+    const nextTimer = window.setTimeout(() => {
+      setActiveIndex((current) => (current + 1) % wishes.length);
+      setVisible(true);
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(nextTimer);
+    };
+  }, [activeIndex, wishes.length]);
+
+  const activeWish = wishes.length > 0 ? wishes[activeIndex % wishes.length] : undefined;
 
   return (
     <section className="px-5 pb-24" aria-labelledby="wishes-title">
@@ -22,18 +42,44 @@ export function WishesSection() {
             </p>
           </div>
         ) : (
-          <div className="mt-8 space-y-4 text-left" aria-live="polite">
-            {wishes.map((wish) => (
-              <article key={wish.id} className="rounded-2xl border border-border bg-paper p-5 shadow-soft">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-display text-2xl">{wish.name}</h3>
-                  <Heart className="h-4 w-4 shrink-0 fill-blush text-gold" aria-hidden="true" />
-                </div>
-                <p className="mt-3 whitespace-pre-wrap break-words font-sans text-sm font-light leading-relaxed text-muted-foreground">
-                  {wish.note}
-                </p>
-              </article>
-            ))}
+          <div className="mt-6">
+            <div className="relative flex min-h-72 items-center justify-center overflow-hidden px-4 py-8">
+              <div className="door-light pointer-events-none absolute inset-0 opacity-50" />
+              {activeWish && (
+                <article
+                  key={activeWish.id}
+                  className={`relative ${visible ? "animate-wish-enter" : "animate-wish-exit"}`}
+                >
+                  <Heart className="mx-auto h-6 w-6 fill-blush text-gold" aria-hidden="true" />
+                  <blockquote className="mt-5 whitespace-pre-wrap break-words font-display text-3xl italic leading-snug">
+                    “{activeWish.note}”
+                  </blockquote>
+                  <p className="mt-5 font-sans text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                    — {activeWish.name}
+                  </p>
+                </article>
+              )}
+            </div>
+
+            {wishes.length > 1 && (
+              <div className="flex justify-center gap-2" aria-label="Tilaklar">
+                {wishes.map((wish, index) => (
+                  <button
+                    key={wish.id}
+                    type="button"
+                    aria-label={`${index + 1}-tilakni ko'rsatish`}
+                    aria-current={index === activeIndex % wishes.length}
+                    onClick={() => {
+                      setActiveIndex(index);
+                      setVisible(true);
+                    }}
+                    className={`h-2 w-2 rounded-full transition-colors ${
+                      index === activeIndex % wishes.length ? "bg-gold" : "bg-border"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
