@@ -8,18 +8,15 @@ import { WelcomeSection } from "@/components/invitation/WelcomeSection";
 import { CountdownSection } from "@/components/invitation/CountdownSection";
 import { VenueSection } from "@/components/invitation/VenueSection";
 import { RsvpSection } from "@/components/invitation/RsvpSection";
-import { WishesSection } from "@/components/invitation/WishesSection";
 import { ContactSection } from "@/components/invitation/ContactSection";
 import { FooterSection } from "@/components/invitation/FooterSection";
 import { useReveal } from "@/hooks/use-reveal";
 import { formatLongDate, wedding } from "@/lib/wedding";
-import { wishesQueryOptions } from "@/lib/wishes";
 
 const title = `${wedding.groom} & ${wedding.bride} — To'y taklifnomasi`;
 const description = `${formatLongDate()}, ${wedding.venueName}. Sizni to'yimizga taklif qilamiz.`;
 
 export const Route = createFileRoute("/")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(wishesQueryOptions),
   head: () => ({
     meta: [
       { title },
@@ -74,7 +71,6 @@ function Invitation() {
       <CountdownSection />
       <VenueSection />
       <RsvpSection />
-      <WishesSection />
       <ContactSection />
       <FooterSection />
       {doorsGone && <MusicButton playing={playing} onToggle={toggle} />}

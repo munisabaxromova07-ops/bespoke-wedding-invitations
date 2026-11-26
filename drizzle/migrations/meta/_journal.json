@@ -15,6 +15,13 @@
       "when": 1795609723249,
       "tag": "0001_add_public_wishes_view",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795688272211,
+      "tag": "0002_make_wishes_private",
+      "breakpoints": true
     }
   ]
 }

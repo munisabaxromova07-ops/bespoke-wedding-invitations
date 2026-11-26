@@ -1,9 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Heart } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
-import { useQueryClient } from "@tanstack/react-query";
 import { submitRsvp } from "@/lib/rsvp.functions";
-import { wishesQueryOptions } from "@/lib/wishes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,7 +11,6 @@ export function RsvpSection() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState("");
   const send = useServerFn(submitRsvp);
-  const queryClient = useQueryClient();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,7 +29,6 @@ export function RsvpSection() {
       setError("Yuborib bo'lmadi. Birozdan keyin qayta urinib ko'ring.");
       return;
     }
-    await queryClient.invalidateQueries({ queryKey: wishesQueryOptions.queryKey });
     setStatus("done");
   }
 
@@ -86,9 +82,6 @@ export function RsvpSection() {
                 Tilaklaringiz (ixtiyoriy)
               </label>
               <Textarea id="note" name="note" maxLength={500} rows={3} placeholder="Yoshlarga tilaklar..." className="mt-2 bg-background" />
-              <p className="mt-2 font-sans text-xs font-light leading-relaxed text-muted-foreground">
-                Tilagingiz ismingiz bilan boshqa mehmonlarga ham ko'rinadi.
-              </p>
             </div>
 
             {error && <p className="text-center font-sans text-sm text-destructive">{error}</p>}
